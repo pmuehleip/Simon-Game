@@ -41,6 +41,8 @@ signals:
 
     void setDownBlueRedButtonSignal(bool isDown);
 
+    void disableSimonButtonSignal(bool disabled);
+
     void updateScoreLcdSignal(int value);
 
     void updateProgressBarSignal(int percentage);

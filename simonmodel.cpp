@@ -36,9 +36,9 @@ void SimonModel::playAMove(string color) {
         played.clear();
         score++;
         speed++;
-        updateScoreLcdSignal(score);
+        emit updateScoreLcdSignal(score);
         highScore = max(score, highScore);
-        updateHighScoreLcdSignal(highScore);
+        emit updateHighScoreLcdSignal(highScore);
         QTimer::singleShot(200, this, emit bind(&SimonModel::updateProgressBarSignal, this, 0));
         addToSequence();
         showSequence(speed);
@@ -83,12 +83,12 @@ void SimonModel::showSequence(int speed) {
 void SimonModel::firstTimeOpenDisplay() {
 
     // Alternating flashes.
-    for(int i = 1000; i < 1800; i+=200) {
-        display("red", i, 100);
-        display("blue", i+100, 100);
+    for(int i = 800; i < 1400; i+=150) {
+        display("red", i, 75);
+        display("blue", i+75, 75);
     }
     // Concurrent flashes.
-    for(int i = 2000; i < 2500; i+=100) {
+    for(int i = 1400; i < 2000; i+=100) {
         display("red", i, 50);
         display("blue", i, 50);
     }
@@ -122,8 +122,8 @@ void SimonModel::reset() {
     played.clear();
     score = 0;
     speed = 1;
-    updateScoreLcdSignal(score);
-    updateProgressBarSignal(0);
+    emit updateScoreLcdSignal(score);
+    emit updateProgressBarSignal(0);
 
 }
 
@@ -131,6 +131,7 @@ void SimonModel::start() {
 
     // TODO: Call reset, disable Simon button here, enable other buttons.
     reset();
+    emit disableSimonButtonSignal(true);
 
     addToSequence();
     addToSequence();
@@ -140,6 +141,7 @@ void SimonModel::start() {
 void SimonModel::stop() {
     // TODO: do endDisplay, enable Simon button, and disable other buttons.
     endGameDisplay();
+    emit disableSimonButtonSignal(false);
 
 }
 

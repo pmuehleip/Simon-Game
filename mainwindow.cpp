@@ -29,9 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(simonModel, &SimonModel::blueButtonSignal, this, &MainWindow::mimickAnimateBlueClick);
     connect(simonModel, &SimonModel::setDownBlueRedButtonSignal, ui->redPushButton, &QPushButton::blockSignals);
     connect(simonModel, &SimonModel::setDownBlueRedButtonSignal, ui->bluePushButton, &QPushButton::blockSignals);
-    connect(simonModel, &SimonModel::updateScoreLcdSignal, this, &MainWindow::updateDisplay);
     connect(simonModel, &SimonModel::updateProgressBarSignal, ui->progressBar, &QProgressBar::setValue);
+    connect(simonModel, &SimonModel::updateScoreLcdSignal, this, &MainWindow::updateDisplay);
     connect(simonModel, &SimonModel::updateHighScoreLcdSignal, this, &MainWindow::updateHighScoreDisplay);
+    connect(simonModel, &SimonModel::disableSimonButtonSignal, ui->simonPushButton, &QPushButton::setDisabled);
 
     simonModel->firstTimeOpenDisplay();
 }

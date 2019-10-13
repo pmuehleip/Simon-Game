@@ -148,6 +148,9 @@ background-color: qlineargradient(x0: 0, y0: 0, x2: 0, y2: 1, stop: 0 rgb(36, 32
     <property name="text">
      <string>SIMON 0.5</string>
     </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
     <property name="flat">
      <bool>false</bool>
     </property>
