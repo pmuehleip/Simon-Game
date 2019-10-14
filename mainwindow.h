@@ -1,3 +1,9 @@
+/**
+* Author: Paul Muehleip
+* Course: CS 3505-001 Fall 2019
+* Assignment: A6 - Qt Simon Game
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -20,13 +26,12 @@ signals:
 
 
 private slots:
+    void updateScoreDisplay(int value);
+    void updateHighScoreDisplay(int value);
 
 private:
     Ui::MainWindow *ui;
     SimonModel *simonModel;
-
-    void updateDisplay(int value);
-    void updateHighScoreDisplay(int value);
 
 };
 #endif // MAINWINDOW_H

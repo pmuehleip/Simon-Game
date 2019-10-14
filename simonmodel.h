@@ -1,3 +1,9 @@
+/**
+* Author: Paul Muehleip
+* Course: CS 3505-001 Fall 2019
+* Assignment: A6 - Qt Simon Game
+*/
+
 #ifndef SIMONMODEL_H
 #define SIMONMODEL_H
 
@@ -10,46 +16,21 @@ class SimonModel : public QMainWindow
     Q_OBJECT
 public:
     explicit SimonModel(QWidget *parent = nullptr);
-
-    void playAMove(std::string color);
-
-    void addToSequence();
-
-    void reset();
-
-    void start();
-
-    void stop();
-
-    std::vector<std::string> getSequence();
-
-    void showSequence(int speed);
-
     void firstTimeOpenDisplay();
 
-    void endGameDisplay();
-
-    void playRed();
-
-    void playBlue();
-
 signals:
-
     void redButtonSignal(int duration);
-
     void blueButtonSignal(int duration);
-
-    void setDownBlueRedButtonSignal(bool isDown);
-
+    void disableBlueRedButtonSignal(bool disabled);
     void disableSimonButtonSignal(bool disabled);
-
     void updateScoreLcdSignal(int value);
-
     void updateProgressBarSignal(int percentage);
-
     void updateHighScoreLcdSignal(int value);
 
 public slots:
+    void start();
+    void playRed();
+    void playBlue();
 
 
 private:
@@ -59,8 +40,13 @@ private:
     std::vector<std::string> sequence;
     std::vector<std::string> played;
 
-
-    void display(std::string color, double interval, double duration);
+    void displayButton(std::string color, double interval, double duration);
+    void playAMove(std::string color);
+    void addToSequence();
+    void reset();
+    void stop();
+    void showSequence(int speed);
+    void endGameDisplay();
 
 };
 

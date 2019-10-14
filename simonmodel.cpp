@@ -1,3 +1,9 @@
+/**
+* Author: Paul Muehleip
+* Course: CS 3505-001 Fall 2019
+* Assignment: A6 - Qt Simon Game
+*/
+
 #include "simonmodel.h"
 #include <iostream>
 #include <string>
@@ -19,17 +25,14 @@ SimonModel::SimonModel(QWidget *parent) : QMainWindow(parent)
 
 void SimonModel::playAMove(string color) {
     played.push_back(color);
-    cout << "played a move: " << color << endl;
 
     // end game
     if(played[played.size()-1] != sequence[played.size()-1]) {
         stop();
-        cout << "End game: " << color << endl;
         return;
     }
 
     updateProgressBarSignal((100.0 * played.size()) / sequence.size());
-    cout << "Progress %: " << (100.0 * played.size()) / sequence.size() << endl;
 
     // If end of sequence
     if(played.size() == sequence.size()) {
@@ -62,54 +65,70 @@ void SimonModel::addToSequence() {
     }
 }
 
+// Display visual feedback back to the user of the current sequence.
 void SimonModel::showSequence(int speed) {
-    double speedFraction = 10.0 / (speed + 9.0);
-    int oneSec = 1000.0;
+    double oneSec = 1000.0;
     double startOffSet = oneSec;
+    double speedFraction = 10.0 / (speed + 9.0);
     double time = oneSec * speedFraction;
 
     for(unsigned int i = 0; i < sequence.size(); i++) {
         double interval = time*i + startOffSet;
         if(sequence[i] == "red") {
-            display("red", interval, time/2);
+            displayButton("red", interval, time/2);
         } else {
-            display("blue", interval, time/2);
+            displayButton("blue", interval, time/2);
         }
     }
     // Unblock signals after sequence is shown.
-    QTimer::singleShot(time*sequence.size()+startOffSet, this, emit bind(&SimonModel::setDownBlueRedButtonSignal, this, false));
+    QTimer::singleShot(time*sequence.size()+startOffSet, this, emit bind(&SimonModel::disableBlueRedButtonSignal, this, false));
 }
 
 void SimonModel::firstTimeOpenDisplay() {
 
+    // Make the progress bar escalate and de-escalate.
+    // Escalate:
+    int startTime1 = 800;
+    int endTime1 = 1400;
+    int duration1 = endTime1 - startTime1;
+    for(int i = startTime1; i <= endTime1; i+= 10) {
+        double percentage = (100*(i-startTime1))/duration1;
+        QTimer::singleShot(i, this, emit bind(&SimonModel::updateProgressBarSignal, this, percentage));
+    }
+    // De-escalate:
+    int startTime2 = 1400;
+    int endTime2 = 2000;
+    int duration2 = endTime2 - startTime2;
+    for(int i = startTime2; i <= endTime2; i+= 10) {
+        double percentage = (100*(i-startTime1))/(duration1+duration2);
+        QTimer::singleShot(i, this, emit bind(&SimonModel::updateProgressBarSignal, this, 100-percentage));
+    }
+
     // Alternating flashes.
     for(int i = 800; i < 1400; i+=150) {
-        display("red", i, 75);
-        display("blue", i+75, 75);
+        displayButton("red", i, 75);
+        displayButton("blue", i+75, 75);
     }
     // Concurrent flashes.
     for(int i = 1400; i < 2000; i+=100) {
-        display("red", i, 50);
-        display("blue", i, 50);
+        displayButton("red", i, 50);
+        displayButton("blue", i, 50);
     }
-
-    // Unblock signals after first time display is shown.
-    QTimer::singleShot(2500, this, emit bind(&SimonModel::setDownBlueRedButtonSignal, this, false));
 }
 
 void SimonModel::endGameDisplay() {
     // Alternating flashes.
     for(int i = 400; i < 2000; i+=200) {
-        display("red", i, 100);
-        display("blue", i+100, 100);
+        displayButton("red", i, 100);
+        displayButton("blue", i+100, 100);
     }
-
-    // Unblock signals after end game display is shown.
-    QTimer::singleShot(2000, this, emit bind(&SimonModel::setDownBlueRedButtonSignal, this, false));
 }
 
-void SimonModel::display(string color, double interval, double duration) {
-    emit setDownBlueRedButtonSignal(true);
+// This method is used to represent a single button being shown back to the user in the
+// visual feedback sequence. It will be displayed for a duration of time in ms and played some
+// amount of time in the future in ms specified by the interval.
+void SimonModel::displayButton(string color, double interval, double duration) {
+    emit disableBlueRedButtonSignal(true);
     if(color == "red") {
         QTimer::singleShot(interval, this, emit bind(&SimonModel::redButtonSignal, this, duration));
     } else {
@@ -128,23 +147,16 @@ void SimonModel::reset() {
 }
 
 void SimonModel::start() {
-
-    // TODO: Call reset, disable Simon button here, enable other buttons.
     reset();
     emit disableSimonButtonSignal(true);
-
     addToSequence();
     addToSequence();
     showSequence(speed);
 }
 
 void SimonModel::stop() {
-    // TODO: do endDisplay, enable Simon button, and disable other buttons.
     endGameDisplay();
     emit disableSimonButtonSignal(false);
+    emit disableBlueRedButtonSignal(true);
 
-}
-
-std::vector<std::string> SimonModel::getSequence() {
-    return sequence;
 }

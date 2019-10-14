@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>600</height>
+    <width>664</width>
+    <height>856</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Simon 0.5</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color:rgb(46, 52, 54)</string>
@@ -20,84 +20,141 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>291</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QProgressBar::chunk {
+   <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QProgressBar" name="progressBar">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QProgressBar::chunk {
     background-color: rgb(252, 233, 79);
     width: 5px;
     margin: 0.5px;
 }</string>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="invertedAppearance">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="redPushButton">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>110</y>
-      <width>290</width>
-      <height>300</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>High Score:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLCDNumber" name="highScoreLcdNumber">
+          <property name="segmentStyle">
+           <enum>QLCDNumber::Flat</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="redPushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton
 {
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0 red, stop:1 rgba(204, 0, 0, 50%));
-border-top-left-radius: 290px;
+border-top-left-radius: 300px;
+}
+
+QPushButton:hover
+{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0 rgba(204, 0, 0, 90%), stop:1 rgba(204, 0, 0, 30%));
 }
 
 QPushButton:pressed 
 {
 background-color: qradialgradient(cx:0.8, cy:0.8, radius: 0.7, fx:0.55, fy:0.55, stop:0 rgb(252, 233, 79), stop:1 rgba(204, 0, 0, 70%));
 }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bluePushButton">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>110</y>
-      <width>290</width>
-      <height>300</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bluePushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton
 {
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0 blue, stop:1 rgba(0, 0, 255, 50%));
-border-top-right-radius: 290px;
+border-top-right-radius: 300;
+}
+
+QPushButton:hover
+{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0 rgba(0, 0, 255, 90%), stop:1 rgba(0, 0, 255, 30%));
 }
 
 QPushButton:pressed 
@@ -105,38 +162,52 @@ QPushButton:pressed
 background-color: qradialgradient(cx:0.7, cy:0.7, radius: 0.7, fx:0.55, fy:0.55, stop:0 rgb(252, 233, 79), stop:1 rgba(0, 0, 255, 70%));
 }
 </string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="simonPushButton">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>250</y>
-      <width>300</width>
-      <height>300</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>21</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-
-QPushButton
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="simonPushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>21</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
 {
 background-color: qradialgradient(cx:0.0, cy:0.0, radius: 1.0, fx:0.0, fy:0.0, stop:0 rgb(76, 72, 74), stop:1 rgba(46, 52, 54, 100%));
 color: white;
-border-radius: 150px;
+border-bottom-right-radius: 280px;
+border-bottom-left-radius: 280px;
+}
+
+QPushButton:hover
+{
+background-color: qradialgradient(cx:0.0, cy:0.0, radius: 1.0, fx:0.0, fy:0.0, stop:0 rgba(76, 72, 74, 90%), stop:1 rgba(36, 42, 44, 50%));
 }
 
 QPushButton:pressed 
@@ -144,71 +215,40 @@ QPushButton:pressed
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #FF7832, stop: 1 #FF9729);
 background-color: qlineargradient(x0: 0, y0: 0, x2: 0, y2: 1, stop: 0 rgb(36, 32, 34), stop: 1 rgba(46, 52, 54, 100%));
 }</string>
-    </property>
-    <property name="text">
-     <string>SIMON 0.5</string>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="scoreLcd">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>310</y>
-      <width>64</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="segmentStyle">
-     <enum>QLCDNumber::Filled</enum>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="highScoreLcdNumber">
-    <property name="geometry">
-     <rect>
-      <x>493</x>
-      <y>50</y>
-      <width>211</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="segmentStyle">
-     <enum>QLCDNumber::Flat</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>50</y>
-      <width>81</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>High Score:</string>
-    </property>
-   </widget>
-   <zorder>redPushButton</zorder>
-   <zorder>bluePushButton</zorder>
-   <zorder>simonPushButton</zorder>
-   <zorder>scoreLcd</zorder>
-   <zorder>progressBar</zorder>
-   <zorder>highScoreLcdNumber</zorder>
-   <zorder>label</zorder>
+      </property>
+      <property name="text">
+       <string>SIMON 0.5</string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLCDNumber" name="scoreLcd">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Filled</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>759</width>
-     <height>22</height>
+     <width>664</width>
+     <height>39</height>
     </rect>
    </property>
   </widget>

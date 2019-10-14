@@ -1,3 +1,9 @@
+/**
+* Author: Paul Muehleip
+* Course: CS 3505-001 Fall 2019
+* Assignment: A6 - Qt Simon Game
+*/
+
 #include "mainwindow.h"
 
 #include <QApplication>
