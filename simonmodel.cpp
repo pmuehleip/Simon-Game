@@ -1,5 +1,5 @@
 /**
-* Author: Paul Muehleip
+* Author: Paul Muehleip & Chris Bordoy
 * Course: CS 3505-001 Fall 2019
 * Assignment: A6 - Qt Simon Game
 */
@@ -96,11 +96,11 @@ void SimonModel::firstTimeOpenDisplay() {
         QTimer::singleShot(i, this, emit bind(&SimonModel::updateProgressBarSignal, this, percentage));
     }
     // De-escalate:
-    int startTime2 = 1400;
+    int startTime2 = endTime1;
     int endTime2 = 2000;
     int duration2 = endTime2 - startTime2;
     for(int i = startTime2; i <= endTime2; i+= 10) {
-        double percentage = (100*(i-startTime1))/(duration1+duration2);
+        double percentage = (100*(i-startTime1))/(duration1+duration2-10);
         QTimer::singleShot(i, this, emit bind(&SimonModel::updateProgressBarSignal, this, 100-percentage));
     }
 

@@ -1,5 +1,5 @@
 /**
-* Author: Paul Muehleip
+* Author: Paul Muehleip & Chris Bordoy
 * Course: CS 3505-001 Fall 2019
 * Assignment: A6 - Qt Simon Game
 */
